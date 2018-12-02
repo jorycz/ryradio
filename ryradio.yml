@@ -19,6 +19,7 @@
           - mpg123
           - postfix
           - mailutils
+          - git
     - name: Find ALL php.ini in /etc/php/
       find:
         paths: /etc/php/
