@@ -14,8 +14,8 @@ I made it in few hours including testing so it should be working fine but script
 
 ## Getting Started
 
-By default analog output is enabled. This can be changed to HDMI in runAfterBoot.sh script.  
-Radio Stations could be modified in radioStations.php before you run ansible-playbook.  
+By default analog output is enabled. This can be changed to HDMI in **runAfterBoot.sh** script.  
+Radio Stations could be modified in **radioStations.php** before you run ansible-playbook.  
 After ansible-playbook install, simple WEB interface should be available on http://YOUR_RPI_IP_ADDRESS/.
 
 ### Prerequisites
