@@ -1,0 +1,113 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  user: pi
+  become: true
+  become_user: root
+  tasks:
+    - name: Update APT package CACHE
+      apt: update_cache=yes cache_valid_time=600
+    - name: Installing base packages
+      package:
+        name: "{{ pcgs }}"
+        state: present
+      vars:
+        pcgs:
+          - vim
+          - apache2
+          - php
+          - mpg123
+          - postfix
+          - mailutils
+    - name: Find ALL php.ini in /etc/php/
+      find:
+        paths: /etc/php/
+        patterns: php.ini
+        recurse: yes
+      register: files_matched
+    - name: Configuring ALL php.ini in /etc/php/
+      lineinfile:
+        destfile: "{{ item.path }}"
+        regexp: "^disable_functions ="
+        line: "disable_functions = pcntl_alarm"
+        state: present
+      with_items:
+        - "{{ files_matched.files }}"
+    - name: Add www-data to users group
+      shell: usermod -a -G adm,audio,video,plugdev,games,users,input,netdev www-data
+    - name: Give www-data bash shell
+      shell: usermod -s /bin/bash www-data
+    - name: Uploading radio scripts to /usr/local/bin
+      copy:
+        src: "{{ item }}"
+        dest: /usr/local/bin/
+        owner: root
+        group: root
+        mode: 0755
+      with_fileglob:
+        - "usrlocalbin/*.sh"
+    - name: Configuring /etc/rc.local
+      lineinfile:
+        destfile: /etc/rc.local
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: present
+      with_items:
+        - { regexp: '^exit ', line: '/usr/local/bin/runAfterBoot.sh & exit 0' }
+    - name: Configuring /etc/postfix/sasl_passwd
+      shell: echo "[smtp.gmail.com]:587 username@gmail.com:<PASSWORD>" >> /etc/postfix/sasl_passwd
+    - name: Setting rights /etc/postfix/sasl_passwd
+      shell: chmod 400 /etc/postfix/sasl_passwd
+    - name: Adding Thawte CA to Posfix CA certs
+      shell: cat /etc/ssl/certs/thawte_Primary_Root_CA.pem | tee -a /etc/postfix/cacert.pem
+    - name: MESSAGE !
+      debug:
+        msg:
+          - 'If google change CA in future, right CA could be found like this ls /etc/ssl/certs/|grep -i thawte'
+    - name: Configuring /etc/postfix/main.cf
+      lineinfile:
+        destfile: /etc/postfix/main.cf
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: present
+      with_items:
+        - { regexp: '^relayhost =', line: 'relayhost = [smtp.gmail.com]:587' }
+        - { regexp: '^smtp_sasl_auth_enable =', line: 'smtp_sasl_auth_enable = yes' }
+        - { regexp: '^smtp_sasl_password_maps =', line: 'smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd' }
+        - { regexp: '^smtp_sasl_security_options =', line: 'smtp_sasl_security_options = noanonymous' }
+        - { regexp: '^smtp_tls_CAfile =', line: 'smtp_tls_CAfile = /etc/postfix/cacert.pem' }
+        - { regexp: '^smtp_use_tls =', line: 'smtp_use_tls = yes' }
+    - name: Cleaning /var/www/html
+      shell: rm -rf /var/www/html/*
+    - name: Uploading radio web files to /var/www/html
+      copy:
+        src: "{{ item }}"
+        dest: /var/www/html/
+        owner: www-data
+        group: www-data
+        mode: 0644
+      with_fileglob:
+        - "varwwwhtml/*"
+    - name: Configuring /etc/fstab for dynamic content to use RAM
+      lineinfile:
+        destfile: /etc/fstab
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: present
+      with_items:
+        - { regexp: '^tmpfs /var/log tmpfs', line: 'tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=96m 0 0' }
+        - { regexp: '^tmpfs /var/log/apache2 tmpfs', line: 'tmpfs /var/log/apache2 tmpfs defaults,noatime,nosuid,mode=0755,size=16m 0 0' }
+        - { regexp: '^tmpfs /tmp tmpfs', line: 'tmpfs /tmp tmpfs defaults,noatime,nosuid,mode=0755,size=16m 0 0' }
+        - { regexp: '^tmpfs /var/tmp tmpfs', line: 'tmpfs /var/tmp tmpfs defaults,noatime,nosuid,mode=0755,size=8m 0 0' }
+        - { regexp: '^tmpfs /var/mail tmpfs', line: 'tmpfs /var/mail tmpfs defaults,noatime,nosuid,mode=0755,size=4m 0 0' }
+        - { regexp: '^tmpfs /var/spool/rsyslog tmpfs', line: 'tmpfs /var/spool/rsyslog tmpfs defaults,noatime,nosuid,mode=0755,size=4m 0 0' }
+    - name: MESSAGE !
+      debug:
+        msg:
+          - '========== DO NOT FORGET if you want to get email after every REBOOT ========='
+          - 'Put real gmail username and password for sending mail to /etc/postfix/sasl_passwd and RUN:'
+          - 'postmap /etc/postfix/sasl_passwd'
+          - 'Put real gmail username for receiving mail to /usr/local/bin/runAfterBoot.sh'
+    - name: REBOOT
+      shell: "sync && sleep 5 && shutdown -r now"
+
