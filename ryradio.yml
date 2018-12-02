@@ -47,6 +47,9 @@
         mode: 0755
       with_fileglob:
         - "usrlocalbin/*.sh"
+    - name: TEST for existing record in /etc/rc.local
+      shell: grep "runAfterBoot.sh" /etc/rc.local
+      register: test_grep_rclocal
     - name: Configuring /etc/rc.local
       lineinfile:
         destfile: /etc/rc.local
@@ -55,15 +58,16 @@
         state: present
       with_items:
         - { regexp: '^exit ', line: '/usr/local/bin/runAfterBoot.sh & exit 0' }
+      when: test_grep_rclocal.stdout == ""
     - name: Ensure /etc/postfix/sasl_passwd exist
       file:
         path: /etc/postfix/sasl_passwd
         owner: root
         group: root
         mode: 0400
-    - name: Test for existing [smtp.gmail.com]:587 line in sasl_passwd
+    - name: TEST for existing [smtp.gmail.com]:587 line in sasl_passwd
       shell: grep "smtp.gmail.com" /etc/postfix/sasl_passwd
-      register: test_grep
+      register: test_grep_sasl
     - name: Configuring /etc/postfix/sasl_passwd
       lineinfile:
         destfile: /etc/postfix/sasl_passwd
@@ -72,7 +76,7 @@
         state: present
       with_items:
         - { regexp: '^[smtp.gmail.com]:587 username', line: '[smtp.gmail.com]:587 username@gmail.com:<PASSWORD>' }
-      when: test_grep.stdout == ""
+      when: test_grep_sasl.stdout == ""
     - name: Adding Thawte CA to Posfix CA certs
       shell: cat /etc/ssl/certs/thawte_Primary_Root_CA.pem | tee -a /etc/postfix/cacert.pem
     - name: MESSAGE !
