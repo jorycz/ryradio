@@ -4,20 +4,23 @@ Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI
 
 # !!! WARNING !!!
 
-!!! WARNING !!! Security of Apache, PHP and so is ZERO, 0, KEINE, NONE, NINGUNO, NO, 없음 ...
-!!! It's supposed to be installed in local home network ONLY
-!!! Never publish web interface to internet
+!!! WARNING !!! Security of Apache, PHP and so is ZERO, 0, KEINE, NONE, NINGUNO, NO, 없음 !  
+!!! It's supposed to be installed in local home network ONLY !  
+!!! Never publish web interface to internet !  
 !!! This will delete all content of /var/www/html/ !!!
 
 ## Getting Started
 
-By default analog output is enabled. Can be changed to HDMI in runAfterBoot.sh script. Radio Stations could be modified in radioStations.php before you run ansible-playbook. After ansible-playbook install, simple WEB interface should be available on http://YOUR_RPI_IP_ADDRESS/.
+By default analog output is enabled. This can be changed to HDMI in runAfterBoot.sh script.  
+Radio Stations could be modified in radioStations.php before you run ansible-playbook.  
+After ansible-playbook install, simple WEB interface should be available on http://YOUR_RPI_IP_ADDRESS/.
 
 ### Prerequisites
 
-Prepare RPi with new, clean OS Raspbian.
-Download RASPBIAN STRETCH LITE from https://www.raspberrypi.org/downloads/raspbian/
-Unzip image file and create boot MicroSD/SD card. Example is for MacOS:
+Prepare RPi with new, clean OS Raspbian.  
+Download RASPBIAN STRETCH LITE from https://www.raspberrypi.org/downloads/raspbian/  
+Unzip image file and create boot MicroSD/SD card.  
+Example is for MacOS:
 
 ```
 diskutil list
