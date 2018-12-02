@@ -2,6 +2,8 @@
 
 Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI with simple Web Interface to change stations and volume. Settings is persistent.
 
+![web interface preview](http://raw.githubusercontent.com/jorycz/ryradio/master/preview/web.png)
+
 # !!! WARNING !!!
 
 !!! WARNING !!! Security of Apache, PHP and so is ZERO, 0, KEINE, NONE, NINGUNO, NO, 없음 !  
