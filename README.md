@@ -48,7 +48,7 @@ git clone https://github.com/jorycz/ryradio.git
 cd ryradio && ansible-playbook ryradio.yml
 ```
 
-Read final MESSAGE section when ansible ends to get email notification work.
+**Read final MESSAGE section when ansible ends to get email notification work.**
 
 ## Authors
 
