@@ -61,6 +61,9 @@
         owner: root
         group: root
         mode: 0400
+    - name: Test for existing [smtp.gmail.com]:587 line in sasl_passwd
+      shell: grep "^[smtp.gmail.com]:587" /etc/postfix/sasl_passwd exist
+      register: test_grep
     - name: Configuring /etc/postfix/sasl_passwd
       lineinfile:
         destfile: /etc/postfix/sasl_passwd
@@ -69,6 +72,7 @@
         state: present
       with_items:
         - { regexp: '^[smtp.gmail.com]:587 username', line: '[smtp.gmail.com]:587 username@gmail.com:<PASSWORD>' }
+      when: test_grep.stdout != ""
     - name: Adding Thawte CA to Posfix CA certs
       shell: cat /etc/ssl/certs/thawte_Primary_Root_CA.pem | tee -a /etc/postfix/cacert.pem
     - name: MESSAGE !

@@ -12,7 +12,8 @@ amixer cset numid=3 1
 
 # MAIL:
 IP=$(hostname -I)
-# echo "RyRadio RaspberryPI URL (local IP) : http://$IP/ " | mail -s "RyRadio Started." username@gmail.com
+# Delete hash and replace someEmail@somewhere.com with your email address:
+#echo "RyRadio RaspberryPI URL (local IP) : http://$IP/ " | mail -s "RyRadio Started." someEmail@somewhere.com
 
 echo
 echo "-> pi password is raspberry"
