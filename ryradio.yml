@@ -62,7 +62,7 @@
         group: root
         mode: 0400
     - name: Test for existing [smtp.gmail.com]:587 line in sasl_passwd
-      shell: grep "^[smtp.gmail.com]:587" /etc/postfix/sasl_passwd
+      shell: grep "smtp.gmail.com" /etc/postfix/sasl_passwd
       register: test_grep
     - name: Configuring /etc/postfix/sasl_passwd
       lineinfile:
