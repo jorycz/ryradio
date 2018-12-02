@@ -72,7 +72,7 @@
         state: present
       with_items:
         - { regexp: '^[smtp.gmail.com]:587 username', line: '[smtp.gmail.com]:587 username@gmail.com:<PASSWORD>' }
-      when: test_grep.stdout != ""
+      when: test_grep.stdout == ""
     - name: Adding Thawte CA to Posfix CA certs
       shell: cat /etc/ssl/certs/thawte_Primary_Root_CA.pem | tee -a /etc/postfix/cacert.pem
     - name: MESSAGE !
