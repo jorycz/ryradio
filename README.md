@@ -33,23 +33,15 @@ Steps for Linux will be similar and Windows users can use dd for Windows or any 
 
 ### Installing
 
-Login as user pi with password raspberry.
+Login by SSH as user pi with password raspberry.
 
 ```
 sudo -i
 systemctl enable ssh
 systemctl start ssh
-```
-
-From remote (Mac/Linux, Windows users use putty):
-```
-scp -r ryradio/ pi@YOUR_RPI_IP_ADDRESS:
-```
-
-Login over SSH.
-```
-sudo -i
 apt update && apt install -y python software-properties-common ansible
+exit
+git clone https://github.com/jorycz/ryradio.git
 cd ryradio && ansible-playbook ryradio.yml
 ```
 
