@@ -55,6 +55,12 @@
         state: present
       with_items:
         - { regexp: '^exit ', line: '/usr/local/bin/runAfterBoot.sh & exit 0' }
+    - name: Ensure /etc/postfix/sasl_passwd exist
+      file:
+        path: /etc/postfix/sasl_passwd exist
+        owner: root
+        group: root
+        mode: 0400
     - name: Configuring /etc/postfix/sasl_passwd
       lineinfile:
         destfile: /etc/postfix/sasl_passwd
