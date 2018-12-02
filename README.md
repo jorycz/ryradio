@@ -11,7 +11,7 @@ Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI
 
 ## Getting Started
 
-By default analog output is enabled. Can be changed to HDMI in runAfterBoot.sh script. Radio Stations could be modified in radioStations.php before you run ansible-playbook. After ansible-playbook install, simple WEB interface should be available on http://<YOUR RPI IP ADDRESS>/.
+By default analog output is enabled. Can be changed to HDMI in runAfterBoot.sh script. Radio Stations could be modified in radioStations.php before you run ansible-playbook. After ansible-playbook install, simple WEB interface should be available on http://YOUR_RPI_IP_ADDRESS/.
 
 ### Prerequisites
 
