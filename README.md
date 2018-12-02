@@ -52,7 +52,7 @@ cd ryradio && ansible-playbook ryradio.yml
 
 ## Authors
 
-* **Josef Rysanek** - *Initial work* - [RyRadio]()
+* **Josef Rysanek** - *Initial work* - [RyRadio](https://github.com/jorycz/ryradio)
 
 ## License
 
