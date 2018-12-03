@@ -49,6 +49,7 @@
         - "usrlocalbin/*.sh"
     - name: TEST for existing record in /etc/rc.local
       shell: grep "runAfterBoot.sh" /etc/rc.local
+      ignore_errors: true
       register: test_grep_rclocal
     - name: Configuring /etc/rc.local
       lineinfile:
@@ -67,6 +68,7 @@
         mode: 0400
     - name: TEST for existing [smtp.gmail.com]:587 line in sasl_passwd
       shell: grep "smtp.gmail.com" /etc/postfix/sasl_passwd
+      ignore_errors: true
       register: test_grep_sasl
     - name: Configuring /etc/postfix/sasl_passwd
       lineinfile:
