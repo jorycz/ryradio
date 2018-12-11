@@ -9,7 +9,7 @@ Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI
 !!! WARNING !!! Security of Apache, PHP and so is ZERO, 0, KEINE, NONE, NINGUNO, NO, 없음 !  
 !!! It's supposed to be installed in local home network ONLY !  
 !!! Never publish web interface to internet !  
-!!! This will delete all content of /var/www/html/ !!!
+!!! This will delete all content of /var/www/html/ !!!  
 I made it in few hours including testing so it should be working fine but scripts are far from perfect. Do NOT run it on other than completelly wiped/clean Raspberry PI.
 
 ## Getting Started
@@ -23,16 +23,20 @@ After ansible-playbook install, simple WEB interface should be available on http
 Prepare RPi with new, clean OS Raspbian.  
 Download RASPBIAN STRETCH LITE from https://www.raspberrypi.org/downloads/raspbian/  
 Unzip image file and create boot MicroSD/SD card.  
-Example is for MacOS:
+Example is for **MacOS**:
 
 ```
 diskutil list
+```
+Find what disk# is SD card. You can run above command before and after insert SD card and compare results.
+```
 diskutil unmountDisk /dev/disk<disk# from diskutil>
 sudo dd bs=1m if=image.img of=/dev/rdisk<disk# from diskutil> conv=sync
 diskutil eject /dev/disk<disk# from diskutil>
 ```
 
-Steps for Linux will be similar and Windows users can use dd for Windows or any tool to write image to USB disk (SD/MicroSD card).
+Steps for **Linux** will be similar.  
+**Windows** users can follow this guide [Installing Raspbian system images using Windows](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md) use Etcher, Win32DiskImager or any tool for writing disk image to USB disk (SD/MicroSD card).
 
 ### Installing
 
