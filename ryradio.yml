@@ -133,8 +133,8 @@
           - ' - Run: postmap /etc/postfix/sasl_passwd'
           - ' - Put real ANY username for receiving mail to script like: nano /usr/local/bin/runAfterBoot.sh'
           - 'Google does NOT accept mail from RPi for first time, so you need to wait at least 30 minutes for first mail to arrive.'
-          - 'This is part of Google SPAM protection so it OK. Just wait for mail. You can check mail queue by running mailq under pi.'
+          - 'This is part of Google SPAM protection so it is OK. Just wait for mail. You can check mail queue by running mailq under pi.'
           - '..........................................................'
-          - 'Save changes and reboot RPi using: shutdown -r now'
+          - 'Reboot RPi using: shutdown -r now'
           - '..........................................................'
 
