@@ -46,7 +46,7 @@ Login by SSH as user pi with password raspberry.
 sudo -i
 systemctl enable ssh
 systemctl start ssh
-apt update && apt install -y python software-properties-common ansible
+apt update && apt install -y python software-properties-common ansible git
 exit
 git clone https://github.com/jorycz/ryradio.git
 cd ryradio && ansible-playbook ryradio.yml
