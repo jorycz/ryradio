@@ -65,7 +65,7 @@
         owner: root
         group: root
         mode: 0400
-        state: present
+        state: touch
     - name: TEST for existing [smtp.gmail.com]:587 line in sasl_passwd
       shell: grep "smtp.gmail.com" /etc/postfix/sasl_passwd
       ignore_errors: true
