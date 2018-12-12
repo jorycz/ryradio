@@ -7,7 +7,7 @@
   tasks:
     - name: Update APT package CACHE
       apt: update_cache=yes cache_valid_time=600
-    - name: Installing base packages
+    - name: Installing base packages - this will take LONG TIME on RPi
       package:
         name: "{{ pcgs }}"
         state: present
@@ -19,7 +19,6 @@
           - mpg123
           - postfix
           - mailutils
-          - git
     - name: Find ALL php.ini in /etc/php/
       find:
         paths: /etc/php/
@@ -66,6 +65,7 @@
         owner: root
         group: root
         mode: 0400
+        state: present
     - name: TEST for existing [smtp.gmail.com]:587 line in sasl_passwd
       shell: grep "smtp.gmail.com" /etc/postfix/sasl_passwd
       ignore_errors: true
