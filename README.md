@@ -38,7 +38,7 @@ diskutil eject /dev/disk<disk# from diskutil>
 Steps for **Linux** will be similar.  
 **Windows** users can follow this guide [Installing Raspbian system images using Windows](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md) use Etcher, Win32DiskImager or any tool for writing disk image to USB disk (SD/MicroSD card).
 
-### Installing
+### Install
 
 Login by SSH as user pi with password raspberry.
 
@@ -49,10 +49,21 @@ systemctl start ssh
 apt update && apt install -y python software-properties-common ansible git
 exit
 git clone https://github.com/jorycz/ryradio.git
-cd ryradio && ansible-playbook updateRadioFiles.yml firstInstall.yml
+cd ryradio
+ansible-playbook updateRadioFiles.yml firstInstall.yml
 ```
 
 **Read final MESSAGE section when ansible ends to get email notification work.**
+
+### Update
+
+Login by SSH as user pi with password raspberry.
+
+```
+cd ryradio
+git pull
+ansible-playbook updateRadioFiles.yml
+```
 
 ## Authors
 
