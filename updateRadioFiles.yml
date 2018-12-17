@@ -30,9 +30,4 @@
         mode: 0644
       with_fileglob:
         - "varwwwhtml/*"
-    - name: Creating CRON for Radio Running Check
-      cron:
-        name: "Radio running check"
-        minute: "*/5"
-        job: "/usr/local/bin/runRadioIfNotRunning.sh"
 
