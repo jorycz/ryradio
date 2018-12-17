@@ -5,9 +5,9 @@
   become: true
   become_user: root
   tasks:
-    - name: Ensure /usr/bin/local/recipients
+    - name: Ensure /usr/local/bin/recipients
       file:
-        path: /usr/bin/local/recipients
+        path: /usr/local/bin/recipients
         owner: pi
         group: pi
         mode: 0644
