@@ -37,15 +37,6 @@
       shell: usermod -a -G adm,audio,video,plugdev,games,users,input,netdev www-data
     - name: Give www-data bash shell
       shell: usermod -s /bin/bash www-data
-    - name: Uploading radio scripts to /usr/local/bin
-      copy:
-        src: "{{ item }}"
-        dest: /usr/local/bin/
-        owner: root
-        group: root
-        mode: 0755
-      with_fileglob:
-        - "usrlocalbin/*.sh"
     - name: TEST for existing record in /etc/rc.local
       shell: grep "runAfterBoot.sh" /etc/rc.local
       ignore_errors: true
@@ -100,15 +91,6 @@
         - { regexp: '^smtp_use_tls =', line: 'smtp_use_tls = yes' }
     - name: Removing /var/www/html/index.htm*
       shell: rm -rf /var/www/html/index.htm*
-    - name: Uploading radio web files to /var/www/html
-      copy:
-        src: "{{ item }}"
-        dest: /var/www/html/
-        owner: www-data
-        group: www-data
-        mode: 0644
-      with_fileglob:
-        - "varwwwhtml/*"
     - name: Configuring /etc/fstab for dynamic content to use RAM
       lineinfile:
         destfile: /etc/fstab

@@ -49,7 +49,7 @@ systemctl start ssh
 apt update && apt install -y python software-properties-common ansible git
 exit
 git clone https://github.com/jorycz/ryradio.git
-cd ryradio && ansible-playbook ryradio.yml
+cd ryradio && ansible-playbook updateRadioFiles.yml firstInstall.yml
 ```
 
 **Read final MESSAGE section when ansible ends to get email notification work.**
