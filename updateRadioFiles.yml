@@ -33,6 +33,6 @@
     - name: Creating CRON for Radio Running Check
       cron:
         name: "Radio running check"
-        minute: "*/1"
+        minute: "*/5"
         job: "/usr/local/bin/runRadioIfNotRunning.sh"
 
