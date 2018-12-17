@@ -5,6 +5,13 @@
   become: true
   become_user: root
   tasks:
+    - name: Ensure /usr/bin/local/recipients
+      file:
+        path: /usr/bin/local/recipients
+        owner: pi
+        group: pi
+        mode: 0644
+        state: touch
     - name: Uploading radio scripts to /usr/local/bin
       copy:
         src: "{{ item }}"

@@ -50,13 +50,6 @@
       with_items:
         - { regexp: '^exit ', line: '/usr/local/bin/runAfterBoot.sh & exit 0' }
       when: test_grep_rclocal.stdout == ""
-   - name: Ensure /usr/bin/local/recipients
-     file:
-        path: /usr/bin/local/recipients
-        owner: pi
-        group: pi
-        mode: 0644
-        state: touch
     - name: Ensure /etc/postfix/sasl_passwd exist
       file:
         path: /etc/postfix/sasl_passwd
