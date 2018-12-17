@@ -6,7 +6,7 @@ Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI
 
 # !!! WARNING !!!
 
-!!! WARNING !!! Security of Apache, PHP and so is ZERO, 0, KEINE, NONE, NINGUNO, NO, 없음 !  
+!!! Security of Apache, PHP and so is ZERO, 0, KEINE, NONE, NINGUNO, NO, 없음 !  
 !!! It's supposed to be installed in local home network ONLY !  
 !!! Never publish web interface to internet !  
 !!! This will delete all content of /var/www/html/ !!!  
