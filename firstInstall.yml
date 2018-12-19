@@ -135,7 +135,7 @@
           - 'Use nano or vim text editor for changes below:'
           - ' - Put real gmail username and password for sending mail to config like: nano /etc/postfix/sasl_passwd'
           - ' - Run: postmap /etc/postfix/sasl_passwd'
-          - ' - Put ANY real email address for receiving mail to recipients like: nano /usr/bin/local/recipients'
+          - ' - Put ANY real email address for receiving mail to recipients like: sudo nano /var/www/html/config/recipients'
           - 'Google does NOT accept mail from RPi for first time, so you need to wait at least 30 minutes for first mail to arrive.'
           - 'This is part of Google SPAM protection so it is OK. Just wait for mail. You can check mail queue by running mailq under pi.'
           - '..........................................................'
