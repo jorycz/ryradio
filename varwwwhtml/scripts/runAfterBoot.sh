@@ -13,7 +13,7 @@ amixer cset numid=3 1
 # MAIL:
 IP=$(hostname -I)
 # Delete hash and replace someEmail@somewhere.com with your email address:
-RCPT="/usr/local/bin/recipients"
+RCPT="/var/www/html/config/recipients"
 if grep '@' ${RCPT} > /dev/null
  then
  MAILS=$(head -n 1 $RCPT)
@@ -25,5 +25,5 @@ echo "-> pi password is raspberry"
 echo "-> IP is $IP"
 echo
 
-runuser -l www-data -c '/usr/local/bin/runRadio.sh'
+runuser -l www-data -c '/var/www/html/scripts/runRadio.sh'
 

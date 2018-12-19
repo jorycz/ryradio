@@ -5,31 +5,6 @@
   become: true
   become_user: root
   tasks:
-    - name: Ensure /usr/local/bin/recipients exist
-      file:
-        path: /usr/local/bin/recipients
-        owner: pi
-        group: pi
-        mode: 0644
-        state: touch
-    - name: Uploading radio scripts to /usr/local/bin
-      copy:
-        src: "{{ item }}"
-        dest: /usr/local/bin/
-        owner: root
-        group: root
-        mode: 0755
-      with_fileglob:
-        - "usrlocalbin/*.sh"
-    - name: Uploading radio web files to /var/www/html
-      copy:
-        src: "{{ item }}"
-        dest: /var/www/html/
-        owner: www-data
-        group: www-data
-        mode: 0644
-      with_fileglob:
-        - "varwwwhtml/*"
     - name: Ensure /var/www/html/config/ exist
       file:
         path: /var/www/html/config/
@@ -55,13 +30,22 @@
         owner: www-data
         group: www-data
         mode: 0755
-    - name: Uploading radio script files to /var/www/html/config/
+    - name: Uploading radio script files to /var/www/html/scripts/
       copy:
         src: "{{ item }}"
         dest: /var/www/html/scripts/
-        owner: www-data
-        group: www-data
+        owner: root
+        group: root
         mode: 0755
       with_fileglob:
-        - "varwwwhtml/scripts/*"
+        - "varwwwhtml/scripts/*.sh"
+    - name: Uploading radio web files to /var/www/html
+      copy:
+        src: "{{ item }}"
+        dest: /var/www/html/
+        owner: www-data
+        group: www-data
+        mode: 0644
+      with_fileglob:
+        - "varwwwhtml/*"
 
