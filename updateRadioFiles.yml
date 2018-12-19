@@ -5,7 +5,7 @@
   become: true
   become_user: root
   tasks:
-    - name: Ensure /usr/local/bin/recipients
+    - name: Ensure /usr/local/bin/recipients exist
       file:
         path: /usr/local/bin/recipients
         owner: pi
@@ -30,4 +30,20 @@
         mode: 0644
       with_fileglob:
         - "varwwwhtml/*"
-
+    - name: Ensure /var/www/html/config/ exist
+      file:
+        path: /var/www/html/config/
+        state: directory
+        recurse: yes
+        owner: www-data
+        group: www-data
+        mode: 0755
+    - name: Uploading radio config files to /var/www/html/config/
+      copy:
+        src: "{{ item }}"
+        dest: /var/www/html/config/
+        owner: www-data
+        group: www-data
+        mode: 0644
+      with_fileglob:
+        - "varwwwhtml/config/*"

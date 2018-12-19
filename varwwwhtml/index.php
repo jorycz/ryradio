@@ -13,7 +13,7 @@ function setVolume($v)
 {
 	if (empty($v))
 		$v=80;
-	$testfile = fopen('/var/www/html/_volume', 'wa+');   
+	$testfile = fopen('/var/www/html/config/_volume', 'wa+');   
 	fwrite ($testfile, $v);
 	fclose($testfile);
 
@@ -27,11 +27,11 @@ function setVolume($v)
 
 function startRadio($sta)
 {
-	require 'radioStations.php';
+	require 'config/radioStations.php';
 
 	if (empty($sta))
 		$sta=0;
-	$testfile = fopen('/var/www/html/_station', 'wa+');   
+	$testfile = fopen('/var/www/html/config/_station', 'wa+');   
 	fwrite ($testfile, $sta);
 	fclose($testfile);
 
@@ -39,7 +39,7 @@ function startRadio($sta)
 	$k=array_keys($db)[$sta];
 	$u=array_values($db)[$sta];
 
-	$testfile = fopen('/var/www/html/_volume', 'r');
+	$testfile = fopen('/var/www/html/config/_volume', 'r');
 	fclose($testfile);
 
 	$process = new Process('killall mpg123 ; mpg123 --timeout 10 -@'.$u);
@@ -57,7 +57,7 @@ if (isset($_GET['vol']))
 {
         setVolume(htmlspecialchars($_GET["vol"]));
 } else {
-        $testfile = fopen('/var/www/html/_volume', 'r');
+        $testfile = fopen('/var/www/html/config/_volume', 'r');
         $v = fgets($testfile);
         fclose($testfile);
         setVolume($v);
@@ -67,7 +67,7 @@ if (isset($_GET['station']))
 {
         startRadio(htmlspecialchars($_GET["station"]));
 } else {
-        $testfile = fopen('/var/www/html/_station', 'r');
+        $testfile = fopen('/var/www/html/config/_station', 'r');
         $s = fgets($testfile);
         fclose($testfile);
         startRadio($s);
