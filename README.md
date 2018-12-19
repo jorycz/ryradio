@@ -40,7 +40,7 @@ Steps for **Linux** will be similar.
 
 ### Install
 
-Login by SSH as user pi with password raspberry.
+Login by SSH (Windows users can use putty) as user pi with password raspberry.
 
 ```
 sudo -i
