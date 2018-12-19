@@ -42,7 +42,7 @@ function startRadio($sta)
 	$testfile = fopen('/var/www/html/_volume', 'r');
 	fclose($testfile);
 
-	$process = new Process('killall mpg123 ; mpg123 -@'.$u);
+	$process = new Process('killall mpg123 ; mpg123 --timeout 10 -@'.$u);
 	$process = new Process();
 
 	global $currentName;
