@@ -27,7 +27,7 @@ function setVolume($v)
 
 function startRadio($sta)
 {
-	require 'config/radioStations.php';
+	require 'radioStations.php';
 
 	if (empty($sta))
 		$sta=0;
