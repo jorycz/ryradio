@@ -96,6 +96,23 @@
         job: "/var/www/html/scripts/runRadioIfNotRunning.sh"
     - name: Removing /var/www/html/index.htm*
       shell: rm -rf /var/www/html/index.htm*
+    - name: Ensure /var/www/html/config/ exist
+      file:
+        path: /var/www/html/config/
+        state: directory
+        recurse: yes
+        owner: www-data
+        group: www-data
+        mode: 0755
+    - name: Uploading radio config files to /var/www/html/config/
+      copy:
+        src: "{{ item }}"
+        dest: /var/www/html/config/
+        owner: www-data
+        group: www-data
+        mode: 0644
+      with_fileglob:
+        - "varwwwhtml/config/*"
     - name: Configuring /etc/fstab for dynamic content to use RAM
       lineinfile:
         destfile: /etc/fstab
