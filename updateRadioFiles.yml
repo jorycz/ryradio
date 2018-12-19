@@ -47,3 +47,21 @@
         mode: 0644
       with_fileglob:
         - "varwwwhtml/config/*"
+    - name: Ensure /var/www/html/scripts/ exist
+      file:
+        path: /var/www/html/scripts/
+        state: directory
+        recurse: yes
+        owner: www-data
+        group: www-data
+        mode: 0755
+    - name: Uploading radio script files to /var/www/html/config/
+      copy:
+        src: "{{ item }}"
+        dest: /var/www/html/scripts/
+        owner: www-data
+        group: www-data
+        mode: 0755
+      with_fileglob:
+        - "varwwwhtml/scripts/*"
+
