@@ -25,5 +25,5 @@ echo "-> pi password is raspberry"
 echo "-> IP is $IP"
 echo
 
-runuser -l www-data -c '/var/www/html/scripts/runRadio.sh'
+/var/www/html/scripts/runRadio.sh &
 
