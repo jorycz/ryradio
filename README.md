@@ -6,8 +6,8 @@ Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI
 
 # API
 
-* **Turn Radio On: wget -qO/dev/null http://IP/index.php?station
-* **Turn Radio Off: wget -qO/dev/null http://IP/index.php?station=666
+* Turn Radio **On**: wget -qO/dev/null http://IP/index.php?station
+* Turn Radio **Off**: wget -qO/dev/null http://IP/index.php?station=666
 
 # !!! WARNING !!!
 
