@@ -4,6 +4,11 @@ Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI
 
 ![Web Interface Preview](http://raw.githubusercontent.com/jorycz/ryradio/master/preview/web.png)
 
+# API
+
+* **Turn Radio On: wget -qO/dev/null http://IP/index.php?station
+* **Turn Radio Off: wget -qO/dev/null http://IP/index.php?station=666
+
 # !!! WARNING !!!
 
 !!! Security of Apache, PHP and so is ZERO, 0, KEINE, NONE, NINGUNO, NO, 없음 !  
