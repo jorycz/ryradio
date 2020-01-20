@@ -30,7 +30,20 @@ function startRadio($sta)
 	require 'radioStations.php';
 
 	if (empty($sta))
-		$sta=0;
+	{
+        $testfile = fopen('/var/www/html/config/_stationLast', 'r');
+        $sta = fgets($testfile);
+        fclose($testfile);
+	}
+	else
+	{
+		if ($sta<666)
+		{
+			$testfile = fopen('/var/www/html/config/_stationLast', 'wa+');   
+			fwrite ($testfile, $sta);
+			fclose($testfile);
+		}
+	}
 	$testfile = fopen('/var/www/html/config/_station', 'wa+');   
 	fwrite ($testfile, $sta);
 	fclose($testfile);
