@@ -79,14 +79,12 @@ if (isset($_GET['vol']))
 if (isset($_GET['station']))
 {
         startRadio(htmlspecialchars($_GET["station"]));
+} else {
+        $testfile = fopen('/var/www/html/config/_station', 'r');
+        $s = fgets($testfile);
+        fclose($testfile);
+        startRadio($s);
 }
-// Start radio always when HTTP GET arrives.
-// else {
-//        $testfile = fopen('/var/www/html/config/_station', 'r');
-//        $s = fgets($testfile);
-//        fclose($testfile);
-//        startRadio($s);
-//}
 }
 
 ?>
