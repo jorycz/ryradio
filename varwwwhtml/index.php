@@ -66,31 +66,27 @@ function startRadio($sta)
 
 function check_vol_and_station_pamars()
 {
-  // Change volume only
-  if (isset($_GET['vol']))
-  {
-    setVolume(htmlspecialchars($_GET["vol"]));
-  }
-  // Set station and start radio
-  else
-  {
+if (isset($_GET['vol']))
+{
+        setVolume(htmlspecialchars($_GET["vol"]));
+} else {
         $testfile = fopen('/var/www/html/config/_volume', 'r');
         $v = fgets($testfile);
         fclose($testfile);
         setVolume($v);
-        
-        if (isset($_GET['station']))
-        {
-                startRadio(htmlspecialchars($_GET["station"]));
-        }
-        else
-        {
-          $testfile = fopen('/var/www/html/config/_station', 'r');
-          $s = fgets($testfile);
-          fclose($testfile);
-          startRadio($s);
-        }
-  }
+}
+
+if (isset($_GET['station']))
+{
+        startRadio(htmlspecialchars($_GET["station"]));
+}
+// Start radio always when HTTP GET arrives.
+// else {
+//        $testfile = fopen('/var/www/html/config/_station', 'r');
+//        $s = fgets($testfile);
+//        fclose($testfile);
+//        startRadio($s);
+//}
 }
 
 ?>
