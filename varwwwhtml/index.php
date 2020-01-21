@@ -43,7 +43,7 @@ function startRadio($sta)
       	global $currentUrl;
       	$currentUrl=$u;
         
-      	$process = new Process('/var/www/html/scripts/runPid.sh '.$u.);
+      	$process = new Process('if ! pidof mpg123 ; then mpg123 --timeout 10 -@'.$u.' ; fi');
       	$process = new Process();
 	}
 	else
@@ -66,7 +66,7 @@ function startRadio($sta)
   	global $currentUrl;
   	$currentUrl=$u;
     
-/  	$process = new Process('killall mpg123 ; mpg123 --timeout 10 -@'.$u);
+  	$process = new Process('killall mpg123 ; mpg123 --timeout 10 -@'.$u);
   	$process = new Process();
 	}
 }
