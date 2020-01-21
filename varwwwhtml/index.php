@@ -29,27 +29,20 @@ function startRadio($sta)
 {
 	require 'radioStations.php';
 
-	$testfile = fopen('/var/www/html/config/_station', 'wa+');   
-	fwrite ($testfile, $sta);
-	fclose($testfile);
-
-	$sta = preg_replace('/\s/', '', $sta);
-	$k=array_keys($db)[$sta];
-	$u=array_values($db)[$sta];
-
-	$testfile = fopen('/var/www/html/config/_volume', 'r');
-	fclose($testfile);
-  
-	global $currentName;
-	$currentName=$k;
-	global $currentUrl;
-	$currentUrl=$u;
-
 	if (empty($sta))
 	{
         $testfile = fopen('/var/www/html/config/_stationLast', 'r');
         $sta = fgets($testfile);
         fclose($testfile);
+        
+      	$sta = preg_replace('/\s/', '', $sta);
+      	$k=array_keys($db)[$sta];
+      	$u=array_values($db)[$sta];
+      	global $currentName;
+      	$currentName=$k;
+      	global $currentUrl;
+      	$currentUrl=$u;
+        
       	$process = new Process('if ! pidof mpg123 ; then mpg123 --timeout 10 -@'.$u.' ; fi');
       	$process = new Process();
 	}
@@ -61,6 +54,18 @@ function startRadio($sta)
 			fwrite ($testfile, $sta);
 			fclose($testfile);
 		}
+  	$testfile = fopen('/var/www/html/config/_station', 'wa+');   
+  	fwrite ($testfile, $sta);
+  	fclose($testfile);
+    
+  	$sta = preg_replace('/\s/', '', $sta);
+  	$k=array_keys($db)[$sta];
+  	$u=array_values($db)[$sta];
+  	global $currentName;
+  	$currentName=$k;
+  	global $currentUrl;
+  	$currentUrl=$u;
+    
   	$process = new Process('killall mpg123 ; mpg123 --timeout 10 -@'.$u);
   	$process = new Process();
 	}
