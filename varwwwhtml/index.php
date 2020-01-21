@@ -29,21 +29,6 @@ function startRadio($sta)
 {
 	require 'radioStations.php';
 
-	if (empty($sta))
-	{
-        $testfile = fopen('/var/www/html/config/_stationLast', 'r');
-        $sta = fgets($testfile);
-        fclose($testfile);
-	}
-	else
-	{
-		if ($sta<666)
-		{
-			$testfile = fopen('/var/www/html/config/_stationLast', 'wa+');   
-			fwrite ($testfile, $sta);
-			fclose($testfile);
-		}
-	}
 	$testfile = fopen('/var/www/html/config/_station', 'wa+');   
 	fwrite ($testfile, $sta);
 	fclose($testfile);
@@ -54,14 +39,31 @@ function startRadio($sta)
 
 	$testfile = fopen('/var/www/html/config/_volume', 'r');
 	fclose($testfile);
-
-	$process = new Process('killall mpg123 ; mpg123 --timeout 10 -@'.$u);
-	$process = new Process();
-
+  
 	global $currentName;
 	$currentName=$k;
 	global $currentUrl;
 	$currentUrl=$u;
+
+	if (empty($sta))
+	{
+        $testfile = fopen('/var/www/html/config/_stationLast', 'r');
+        $sta = fgets($testfile);
+        fclose($testfile);
+      	$process = new Process('if ! pidof mpg123 ; then mpg123 --timeout 10 -@'.$u.' ; fi');
+      	$process = new Process();
+	}
+	else
+	{
+		if ($sta<666)
+		{
+			$testfile = fopen('/var/www/html/config/_stationLast', 'wa+');   
+			fwrite ($testfile, $sta);
+			fclose($testfile);
+		}
+  	$process = new Process('killall mpg123 ; mpg123 --timeout 10 -@'.$u);
+  	$process = new Process();
+	}
 }
 
 function check_vol_and_station_pamars()
