@@ -2,7 +2,7 @@
 
 Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI with simple Web Interface to change stations and volume. Settings is persistent.
 
-![Web Interface Preview](http://raw.githubusercontent.com/jorycz/ryradio/master/preview/web.png)
+![Web Interface Preview](https://raw.githubusercontent.com/jorycz/ryradio/master/preview/web.png)
 
 # API
 
