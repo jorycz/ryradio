@@ -31,64 +31,15 @@
         mode: 0644
       with_fileglob:
         - "varwwwhtml/*"
-    # _station
-    - name: Check if config file _station exist
-      stat:
-        path: /var/www/html/scripts/config/_station
-      register: _station_result
-    - name: Uploading config file _station
+    # configs
+    - name: Uploading config files if not exist
       copy:
         src: "{{ item }}"
         dest: /var/www/html/config/
         owner: www-data
         group: www-data
         mode: 0644
+        force: no
       with_fileglob:
-        - "varwwwhtml/config/_station"
-      when: _station_result.stat.exists == False
-    # _stationLast
-    - name: Check if config file _stationLast exist
-      stat:
-        path: /var/www/html/scripts/config/_stationLast
-      register: _stationLast_result
-    - name: Uploading config file _stationLast
-      copy:
-        src: "{{ item }}"
-        dest: /var/www/html/config/
-        owner: www-data
-        group: www-data
-        mode: 0644
-      with_fileglob:
-        - "varwwwhtml/config/_stationLast"
-      when: _stationLast_result.stat.exists == False
-    # _volume
-    - name: Check if config file _volume exist
-      stat:
-        path: /var/www/html/scripts/config/_volume
-      register: _volume_result
-    - name: Uploading config file _volume
-      copy:
-        src: "{{ item }}"
-        dest: /var/www/html/config/
-        owner: www-data
-        group: www-data
-        mode: 0644
-      with_fileglob:
-        - "varwwwhtml/config/_volume"
-      when: _volume_result.stat.exists == False
-    # recipients
-    - name: Check if config file recipients exist
-      stat:
-        path: /var/www/html/scripts/config/recipients
-      register: recipients_result
-    - name: Uploading config file recipients
-      copy:
-        src: "{{ item }}"
-        dest: /var/www/html/config/
-        owner: www-data
-        group: www-data
-        mode: 0644
-      with_fileglob:
-        - "varwwwhtml/config/recipients"
-      when: recipients_result.stat.exists == False
+        - "varwwwhtml/config/*"
 
