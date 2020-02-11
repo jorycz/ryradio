@@ -68,7 +68,7 @@ Login by SSH as user pi with password raspberry.
 cd ryradio
 git pull
 ansible-playbook updateRadioFiles.yml
-sudo /var/www/html/scripts/runRadio.sh 
+sudo reboot
 ```
 
 ## Authors
