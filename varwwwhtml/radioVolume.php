@@ -3,8 +3,8 @@
 global $volume;
 $volume = array(
 
-"70",
 "80",
+"85",
 "90",
 "95",
 "100"
