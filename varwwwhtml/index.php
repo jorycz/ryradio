@@ -15,10 +15,15 @@ function setVolume($v)
 		$v=80;
 	$testfile = fopen('/var/www/html/config/_volume', 'wa+');   
 	fwrite ($testfile, $v);
+
+	$device = fopen('/var/www/html/config/_device', 'r');
+	$name = fgets($device);
+
 	fclose($testfile);
+	fclose($device);
 
 	$v = preg_replace('/\s/', '', $v);
-	$process = new Process('amixer set PCM '.$v.'%');
+	$process = new Process('amixer set '.$name.' '.$v.'%');
 	$process = new Process();
 
 	global $currentVolume;
