@@ -34,7 +34,7 @@ function startRadio($sta)
 {
 	require 'radioStations.php';
 
-	if (empty($sta))
+	if (empty($sta) && strlen($sta) == 0)
 	{
         $testfile = fopen('/var/www/html/config/_stationLast', 'r');
         $sta = fgets($testfile);
