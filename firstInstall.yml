@@ -94,6 +94,11 @@
         name: "Radio running check"
         minute: "*/5"
         job: "/var/www/html/scripts/runRadioIfNotRunning.sh"
+    - name: Creating CRON for Radio Night Volume Check
+      cron:
+        name: "Radio Night Volume Check"
+        minute: "*/10"
+        job: "/var/www/html/scripts/nightDayVolume.sh"
     - name: Removing /var/www/html/index.htm*
       shell: rm -rf /var/www/html/index.htm*
     - name: Ensure /var/www/html/config/ exist
