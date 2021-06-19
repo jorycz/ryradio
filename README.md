@@ -62,7 +62,7 @@ ansible-playbook updateRadioFiles.yml firstInstall.yml
 
 ### Update
 
-Login by SSH as user pi with password raspberry.
+Login using SSH as user pi with password raspberry.
 
 ```
 cd ryradio

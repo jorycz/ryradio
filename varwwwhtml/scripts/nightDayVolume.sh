@@ -8,7 +8,7 @@ LOWER="10"
 
 #echo "Current device [ $DEVICE ] and DAY volume [ $SET_VOL ]."
 
-if [ ${HOUR} -ge 8 ] && [ ${HOUR} -le 22 ]
+if [ ${HOUR} -ge 8 ] && [ ${HOUR} -le 21 ]
 then
   amixer set "$DEVICE" "${SET_VOL}%"
 else
