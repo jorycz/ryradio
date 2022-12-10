@@ -118,19 +118,19 @@
         mode: 0644
       with_fileglob:
         - "varwwwhtml/config/*"
-    - name: Configuring /etc/fstab for dynamic content to use RAM
-      lineinfile:
-        destfile: /etc/fstab
-        regexp: "{{ item.regexp }}"
-        line: "{{ item.line }}"
-        state: present
-      with_items:
-        - { regexp: '^tmpfs /var/log tmpfs', line: 'tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=96m 0 0' }
-        - { regexp: '^tmpfs /var/log/apache2 tmpfs', line: 'tmpfs /var/log/apache2 tmpfs defaults,noatime,nosuid,mode=0755,size=16m 0 0' }
-        - { regexp: '^tmpfs /tmp tmpfs', line: 'tmpfs /tmp tmpfs defaults,noatime,nosuid,mode=0755,size=16m 0 0' }
-        - { regexp: '^tmpfs /var/tmp tmpfs', line: 'tmpfs /var/tmp tmpfs defaults,noatime,nosuid,mode=0755,size=8m 0 0' }
-        - { regexp: '^tmpfs /var/mail tmpfs', line: 'tmpfs /var/mail tmpfs defaults,noatime,nosuid,mode=0755,size=4m 0 0' }
-        - { regexp: '^tmpfs /var/spool/rsyslog tmpfs', line: 'tmpfs /var/spool/rsyslog tmpfs defaults,noatime,nosuid,mode=0755,size=4m 0 0' }
+    # - name: Configuring /etc/fstab for dynamic content to use RAM
+    #   lineinfile:
+    #     destfile: /etc/fstab
+    #     regexp: "{{ item.regexp }}"
+    #     line: "{{ item.line }}"
+    #     state: present
+    #   with_items:
+    #     - { regexp: '^tmpfs /var/log tmpfs', line: 'tmpfs /var/log tmpfs defaults,noatime,nosuid,mode=0755,size=96m 0 0' }
+    #     - { regexp: '^tmpfs /var/log/apache2 tmpfs', line: 'tmpfs /var/log/apache2 tmpfs defaults,noatime,nosuid,mode=0755,size=16m 0 0' }
+    #     - { regexp: '^tmpfs /tmp tmpfs', line: 'tmpfs /tmp tmpfs defaults,noatime,nosuid,mode=0755,size=16m 0 0' }
+    #     - { regexp: '^tmpfs /var/tmp tmpfs', line: 'tmpfs /var/tmp tmpfs defaults,noatime,nosuid,mode=0755,size=8m 0 0' }
+    #     - { regexp: '^tmpfs /var/mail tmpfs', line: 'tmpfs /var/mail tmpfs defaults,noatime,nosuid,mode=0755,size=4m 0 0' }
+    #     - {regexp: '^tmpfs /var/spool/rsyslog tmpfs', line: 'tmpfs /var/spool/rsyslog tmpfs defaults,noatime,nosuid,mode=0755,size=4m 0 0' }
     - name: MESSAGE !
       debug:
         msg:
