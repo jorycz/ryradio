@@ -71,7 +71,8 @@
         - { regexp: '^[smtp.gmail.com]:587 username', line: '[smtp.gmail.com]:587 username@gmail.com:<PASSWORD>' }
       when: test_grep_sasl.stdout == ""
     - name: Adding Thawte CA to Posfix CA certs
-      shell: cat /etc/ssl/certs/thawte_Primary_Root_CA.pem | tee -a /etc/postfix/cacert.pem
+      #shell: cat /etc/ssl/certs/thawte_Primary_Root_CA.pem | tee -a /etc/postfix/cacert.pem
+      shell: cat /etc/ssl/certs/GlobalSign* | tee -a /etc/postfix/cacert.pem
     - name: MESSAGE !
       debug:
         msg:
