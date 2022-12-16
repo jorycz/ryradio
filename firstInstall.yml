@@ -127,6 +127,7 @@
         owner: www-data
         group: www-data
         mode: 0644
+        force: no
       with_fileglob:
         - "varwwwhtml/config/*"
       tags: radioOnly

@@ -14,9 +14,9 @@ DA=$(date)
 if [ ${HOUR} -ge 8 ] && [ ${HOUR} -le 21 ]
 then
   amixer set "$DEVICE" "${SET_VOL}%"
-  echo "Radio volume set on [ $DA ] to [ ${SET_VOL} ]." >> $D
+  echo "Radio DAY volume set on [ $DA ] to [ ${SET_VOL} ]." >> $D
 else
   NIGHT_VOLUME="$((SET_VOL-LOWER))"
   amixer set "$DEVICE" "${NIGHT_VOLUME}%"
-  echo "Radio volume set on [ $DA ] to [ ${NIGHT_VOLUME} ]." >> $D
+  echo "Radio NIGHT volume set on [ $DA ] to [ ${NIGHT_VOLUME} ]." >> $D
 fi
