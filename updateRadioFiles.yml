@@ -5,27 +5,27 @@
   become: true
   become_user: root
   tasks:
-    - name: Ensure /var/www/html/scripts/ exist
+    - name: Ensure /var/www/html/rr/scripts/ exist
       file:
-        path: /var/www/html/scripts/
+        path: /var/www/html/rr/scripts/
         state: directory
         recurse: yes
         owner: www-data
         group: www-data
         mode: 0755
-    - name: Uploading radio script files to /var/www/html/scripts/
+    - name: Uploading radio script files to /var/www/html/rr/scripts/
       copy:
         src: "{{ item }}"
-        dest: /var/www/html/scripts/
+        dest: /var/www/html/rr/scripts/
         owner: root
         group: root
         mode: 0755
       with_fileglob:
         - "varwwwhtml/scripts/*.sh"
-    - name: Uploading radio web files to /var/www/html
+    - name: Uploading radio web files to /var/www/html/rr/
       copy:
         src: "{{ item }}"
-        dest: /var/www/html/
+        dest: /var/www/html/rr/
         owner: www-data
         group: www-data
         mode: 0644
@@ -35,7 +35,7 @@
     - name: Uploading config files if not exist
       copy:
         src: "{{ item }}"
-        dest: /var/www/html/config/
+        dest: /var/www/html/rr/config/
         owner: www-data
         group: www-data
         mode: 0644

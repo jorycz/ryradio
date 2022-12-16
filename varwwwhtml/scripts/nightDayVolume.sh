@@ -2,8 +2,8 @@
 
 HOUR="$(date +%H)"
 
-SET_VOL=$(cat /var/www/html/config/_volume)
-DEVICE=$(cat /var/www/html/config/_device)
+SET_VOL=$(cat /var/www/html/rr/config/_volume)
+DEVICE=$(cat /var/www/html/rr/config/_device)
 LOWER="10"
 
 #echo "Current device [ $DEVICE ] and DAY volume [ $SET_VOL ]."

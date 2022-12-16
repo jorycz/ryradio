@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SF="/var/www/html/config/_station"
+SF="/var/www/html/rr/config/_station"
 D="/tmp/radioReset.log"
 
 if ! grep 666 ${SF} > /dev/null
@@ -9,7 +9,7 @@ then
   then
    DA=$(date)
    echo "Trying to run Radio again on [ $DA ]" >> $D
-   /var/www/html/scripts/runRadio.sh &> /dev/null
+   /var/www/html/rr/scripts/runRadio.sh &> /dev/null
  fi
 fi
 

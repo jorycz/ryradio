@@ -6,22 +6,22 @@ Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI
 
 # API
 
-* Turn Radio **On**: wget -qO/dev/null http://IP/index.php?station
-* Turn Radio **Off**: wget -qO/dev/null http://IP/index.php?station=666
+* Turn Radio **On**: wget -qO/dev/null http://IP/rr/index.php?station
+* Turn Radio **Off**: wget -qO/dev/null http://IP/rr/index.php?station=666
 
 # !!! WARNING !!!
 
 !!! Security of Apache, PHP and so is ZERO, 0, KEINE, NONE, NINGUNO, NO, 없음 !  
 !!! It's supposed to be installed in local home network ONLY !  
 !!! Never publish web interface to internet !  
-!!! This will delete all content of /var/www/html/ !!!  
+!!! This will ADD content to /var/www/html/ - rr/ folder with radio files !
 I made it in few hours including testing so it should be working fine but scripts are far from perfect. Do NOT run it on other than completelly wiped/clean Raspberry PI.
 
 ## Getting Started
 
 By default analog output is enabled. This can be changed to HDMI in **runAfterBoot.sh** script.  
 Radio Stations could be modified in **radioStations.php** before you run ansible-playbook.  
-After ansible-playbook install, simple WEB interface should be available on http://YOUR_RPI_IP_ADDRESS/.
+After ansible-playbook install, simple WEB interface should be available on http://YOUR_RPI_IP_ADDRESS/rr/.
 
 ### Prerequisites
 

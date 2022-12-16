@@ -7,7 +7,7 @@ sleep 10
 # Before Pi OS update 28 May 2020 name was PCM, but then changed to Headphone
 # https://github.com/mopidy/mopidy-alsamixer/issues/24
 # So detect it
-R="/var/www/html/config/"
+R="/var/www/html/rr/config/"
 amixer | grep "Simple mixer control" | sed "s;.* '\(.*\)'.*;\1;" > ${R}_device
 DEV=$(cat ${R}_device)
 amixer set $DEV "95%"
@@ -22,7 +22,7 @@ amixer cset numid=3 1
 # MAIL:
 IP=$(hostname -I)
 # Delete hash and replace someEmail@somewhere.com with your email address:
-RCPT="/var/www/html/config/recipients"
+RCPT="/var/www/html/rr/config/recipients"
 if grep '@' ${RCPT} > /dev/null
  then
  MAILS=$(head -n 1 $RCPT)
@@ -34,5 +34,5 @@ echo "-> pi password is raspberry"
 echo "-> IP is $IP"
 echo
 
-/var/www/html/scripts/runRadio.sh &
+/var/www/html/rr/scripts/runRadio.sh &
 
