@@ -6,8 +6,8 @@ Set of scripts to create one-purpose Internet Radio Player from old Raspberry PI
 
 # API
 
-* Turn Radio **On**: wget -qO/dev/null http://IP/rr/index.php?station
-* Turn Radio **Off**: wget -qO/dev/null http://IP/rr/index.php?station=666
+* Turn Radio **On**: wget -qO/dev/null http://YOUR_RPI_IP_ADDRESS/rr/index.php?station
+* Turn Radio **Off**: wget -qO/dev/null http://YOUR_RPI_IP_ADDRESS/rr/index.php?station=666
 
 # !!! WARNING !!!
 
@@ -56,6 +56,8 @@ exit
 git clone https://github.com/jorycz/ryradio.git
 cd ryradio
 ansible-playbook updateRadioFiles.yml firstInstall.yml
+// If you don't want to install apache web server and postfix mail server, use --tags radioOnly like
+// ansible-playbook updateRadioFiles.yml firstInstall.yml --tags radioOnly
 ```
 
 **Read final MESSAGE section when ansible ends to get email notification work.**
