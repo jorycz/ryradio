@@ -13,6 +13,7 @@
         owner: www-data
         group: www-data
         mode: 0755
+      tags: radioOnly
     - name: Uploading radio script files to /var/www/html/rr/scripts/
       copy:
         src: "{{ item }}"
@@ -22,6 +23,7 @@
         mode: 0755
       with_fileglob:
         - "varwwwhtml/scripts/*.sh"
+      tags: radioOnly
     - name: Uploading radio web files to /var/www/html/rr/
       copy:
         src: "{{ item }}"
@@ -31,6 +33,7 @@
         mode: 0644
       with_fileglob:
         - "varwwwhtml/*"
+      tags: radioOnly
     # configs
     - name: Uploading config files if not exist
       copy:
@@ -42,4 +45,5 @@
         force: no
       with_fileglob:
         - "varwwwhtml/config/*"
+      tags: radioOnly
 
