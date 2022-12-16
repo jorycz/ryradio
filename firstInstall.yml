@@ -6,7 +6,7 @@
   tasks:
     - name: Update APT package CACHE
       apt: update_cache=yes cache_valid_time=600
-    - name: Installing base packages - this will take LONG TIME on RPi
+    - name: Installing base packages - this will take LONG TIME on RPi 1
       package:
         name: "{{ pcgs }}"
         state: present
@@ -15,9 +15,16 @@
           - vim
           - apache2
           - php
-          - mpg123
           - postfix
+    - name: Installing radio packages - this will take LONG TIME on RPi 1
+      package:
+        name: "{{ pcgs }}"
+        state: present
+      vars:
+        pcgs:
+          - mpg123
           - mailutils
+      tags: radioOnly
     - name: Find ALL php.ini in /etc/php/
       find:
         paths: /etc/php/
@@ -34,18 +41,22 @@
         - "{{ files_matched.files }}"
     - name: Add www-data to users group
       shell: usermod -a -G adm,audio,video,plugdev,games,users,input,netdev www-data
+      tags: radioOnly
     - name: Give www-data bash shell
       shell: usermod -s /bin/bash www-data
+      tags: radioOnly
     - name: TEST for existing record in /etc/rc.local
       shell: grep "runAfterBoot.sh" /etc/rc.local
       ignore_errors: true
       register: test_grep_rclocal
+      tags: radioOnly
     - name: Configuring /etc/rc.local
       lineinfile:
         path: /etc/rc.local
         line: "/var/www/html/rr/scripts/runAfterBoot.sh &"
         insertbefore: "exit 0"
       when: test_grep_rclocal.stdout == ""
+      tags: radioOnly
     - name: Ensure /etc/postfix/sasl_passwd exist
       file:
         path: /etc/postfix/sasl_passwd
@@ -91,11 +102,13 @@
         name: "Radio running check"
         minute: "*/5"
         job: "/var/www/html/rr/scripts/runRadioIfNotRunning.sh"
+      tags: radioOnly
     - name: Creating CRON for Radio Night Volume Check
       cron:
         name: "Radio Night Volume Check"
         minute: "*/10"
         job: "/var/www/html/rr/scripts/nightDayVolume.sh"
+      tags: radioOnly
     # - name: Removing /var/www/html/index.htm*
     #   shell: rm -rf /var/www/html/index.htm*
     - name: Ensure /var/www/html/rr/config/ exist
@@ -106,6 +119,7 @@
         owner: www-data
         group: www-data
         mode: 0755
+      tags: radioOnly
     - name: Uploading radio config files to /var/www/html/rr/config/
       copy:
         src: "{{ item }}"
@@ -115,6 +129,7 @@
         mode: 0644
       with_fileglob:
         - "varwwwhtml/config/*"
+      tags: radioOnly
     # - name: Configuring /etc/fstab for dynamic content to use RAM
     #   lineinfile:
     #     destfile: /etc/fstab
@@ -144,4 +159,5 @@
           - '..........................................................'
           - 'Reboot RPi using: shutdown -r now'
           - '..........................................................'
+      tags: radioOnly
 
