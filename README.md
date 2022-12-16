@@ -56,8 +56,9 @@ exit
 git clone https://github.com/jorycz/ryradio.git
 cd ryradio
 ansible-playbook updateRadioFiles.yml firstInstall.yml
-// If you don't want to install apache web server and postfix mail server, use --tags radioOnly like
-// ansible-playbook updateRadioFiles.yml firstInstall.yml --tags radioOnly
+// If you don't want to install apache web server and postfix mail server, use:
+//   ansible-playbook updateRadioFiles.yml firstInstall.yml --tags radioOnly
+// You must have own WEB server with PHP and MAIL server.
 ```
 
 **Read final MESSAGE section when ansible ends to get email notification work.**
