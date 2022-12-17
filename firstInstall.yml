@@ -100,7 +100,7 @@
     - name: Creating CRON for Radio Running Check
       cron:
         name: "Radio running check"
-        minute: "*/5"
+        minute: "*/1"
         job: "/var/www/html/rr/scripts/runRadioIfNotRunning.sh"
       tags: radioOnly
     - name: Creating CRON for Radio Night Volume Check
