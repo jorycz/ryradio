@@ -9,6 +9,7 @@ $db = array(
 'Paradise Standard' => 'http://stream.radioparadise.com/mp3-192',
 'Paradise Mellow' => 'http://stream.radioparadise.com/mellow-192',
 'Paradise World Etc.' => 'http://stream.radioparadise.com/world-etc-192',
+'Smooth Jazz' => 'http://smoothjazz.cdnstream1.com/2585_256.mp3',
 'BEAT' => 'http://www.play.cz/radio/beat64.mp3.m3u',
 'JAZZ' => 'http://api.play.cz/radio/crojazz128.mp3.m3u',
 'ROCKZONE' => 'http://icecast5.play.cz/rockzone128.mp3.m3u',

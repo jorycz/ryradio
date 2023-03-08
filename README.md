@@ -55,7 +55,8 @@ apt update && apt install -y python software-properties-common ansible git
 exit
 git clone https://github.com/jorycz/ryradio.git
 cd ryradio
-ansible-playbook updateRadioFiles.yml firstInstall.yml
+ansible-playbook firstInstall.yml
+ansible-playbook updateRadioFiles.yml
 // If you don't want to install apache web server and postfix mail server, use:
 //   ansible-playbook updateRadioFiles.yml firstInstall.yml --tags radioOnly
 // You must have own WEB server with PHP and MAIL server.
