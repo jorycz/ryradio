@@ -8,6 +8,12 @@ sleep 10
 # https://github.com/mopidy/mopidy-alsamixer/issues/24
 # So detect it
 R="/var/www/html/rr/config/"
+
+if [ -f ${R}/sleepAfterBoot ]
+then
+  sleep $(cat ${R}/sleepAfterBoot)
+fi
+
 amixer | grep "Simple mixer control" | sed "s;.* '\(.*\)'.*;\1;" > ${R}_device
 DEV=$(cat ${R}_device)
 amixer set $DEV "95%"
