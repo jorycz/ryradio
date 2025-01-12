@@ -1,0 +1,2 @@
+Version where --timeout param still works. Updated version in 2024 crashed when --timeout was used.
+
